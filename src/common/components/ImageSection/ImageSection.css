@@ -1,0 +1,41 @@
+.image-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.image-section-image {
+  width: 300px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image-section-content {
+ display: flex;
+ flex-direction: column;
+ flex:1;
+ gap:20px;
+
+  
+}
+
+.image-section-title {
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+  color: #222;
+}
+
+.image-section-subtitle {
+  font-size: 1rem;
+  color: #555;
+  margin: 0.25rem 0;
+}
+
+.image-section-desc {
+  font-size: 0.95rem;
+  color: #444;
+  margin-top: 0.5rem;
+}

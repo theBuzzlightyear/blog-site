@@ -1,0 +1,28 @@
+.social-section {
+  margin: 2rem 0;
+}
+
+.social-heading {
+  font-size: 1.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.social-link {
+  text-decoration: none;
+  background-color: #0070f3;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.social-link:hover {
+  background-color: #005dc1;
+}
