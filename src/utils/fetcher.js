@@ -23,6 +23,31 @@ export async function fetchAllBlogSlugs() {
 
 
 
+// export async function fetchBlogBySlug(slug) {
+//     const query = qs.stringify(
+//         {
+//             filters: {
+//                 Slug: {
+//                     $eq: slug,
+//                 },
+//             },
+//             populate: BLOG_POPULATE_TREE,
+//         },
+//         { encodeValuesOnly: true }
+//     );
+
+//     const res = await fetch(`${STRAPI_API_URL}/api/blogs?${query}`);
+
+
+//     if (!res.ok) {
+//         throw new Error(`Failed to fetch blog with slug: ${slug}`);
+//     }
+
+//     const json = await res.json();
+
+//     return json?.data?.[0] || null;
+// }
+
 export async function fetchBlogBySlug(slug) {
     const query = qs.stringify(
         {
@@ -36,14 +61,14 @@ export async function fetchBlogBySlug(slug) {
         { encodeValuesOnly: true }
     );
 
-    const res = await fetch(`${STRAPI_API_URL}/api/blogs?${query}`);
-
+    const res = await fetch(`${STRAPI_API_URL}/api/blogs?${query}`, {
+        next: { tags: ['blog'] }, 
+    });
 
     if (!res.ok) {
         throw new Error(`Failed to fetch blog with slug: ${slug}`);
     }
 
     const json = await res.json();
-
     return json?.data?.[0] || null;
 }

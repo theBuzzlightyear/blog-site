@@ -1,34 +1,19 @@
 import BlogLayout from '@/modules/blogModule/BlogLayout';
 import { fetchAllBlogSlugs, fetchBlogBySlug } from '@/utils/fetcher';
+import { notFound } from 'next/navigation';
 
-export async function getStaticPaths() {
-    const paths = await fetchAllBlogSlugs();
+export async function generateStaticParams() {
+  const slugs = await fetchAllBlogSlugs();
 
-    return {
-        paths,
-        fallback: false,
-    };
+  return slugs.map((blog) => ({
+    slug: blog.slug,
+  }));
 }
 
+export default async function BlogPage({ params }) {
+  const blog = await fetchBlogBySlug(params.slug);
 
+  if (!blog) return notFound();
 
-export async function getStaticProps({ params }) {
-    const blog = await fetchBlogBySlug(params.slug);
-
-    if (!blog) {
-        return { notFound: true };
-    }
-
-    return {
-        props: {
-            blog, 
-        },
-        revalidate: 60,
-    };
-}
-
-
-export default function BlogPage({ blog }) {
-    if (!blog) return <div>Loading...</div>;
-    return <BlogLayout data={blog} />;
+  return <BlogLayout data={blog} />;
 }
